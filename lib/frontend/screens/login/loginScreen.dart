@@ -8,88 +8,175 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig sizeConfig = SizeConfig();
     sizeConfig.init(context);
+
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.transparent;
+      }
+      return Colors.red;
+    }
+
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: getScreenWidth(40),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  FontAwesomeIcons.clock,
-                  size: getScreenHeight(90),
-                  color: kPrimaryColor,
-                ),
-                SizedBox(
-                  height: getScreenHeight(20),
-                ),
-                Text(
-                  'Quizaholic',
-                  style: TextStyle(
-                    fontSize: getScreenHeight(28),
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.3,
-                    color: kPrimaryColor,
+      resizeToAvoidBottomInset: false,
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: getScreenWidth(40),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.008,
                   ),
-                ),
-                Form(
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          isDense: true,
-                          hintText: 'Email',
-                          hintStyle: TextStyle(
-                            height: 1,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: kPrimaryColor,
+                  Image.asset('assets/images/logo_quiz.png'),
+                  SizedBox(
+                    height: getScreenHeight(20),
+                  ),
+                  Text(
+                    'Quizaholic',
+                    style: TextStyle(
+                      fontSize: getScreenHeight(28),
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.3,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                  ),
+                  Form(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            hintText: 'Email',
+                            hintStyle: TextStyle(
+                              height: 1,
                             ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: getScreenWidth(14),
-                            vertical: getScreenHeight(16),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: kPrimaryColor,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: getScreenWidth(14),
+                              vertical: getScreenHeight(16),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: getScreenHeight(20),
-                      ),
-                    ],
+                        SizedBox(
+                          height: getScreenHeight(20),
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            hintText: 'Password',
+                            hintStyle: TextStyle(
+                              height: 1,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: kPrimaryColor,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: getScreenWidth(14),
+                              vertical: getScreenHeight(16),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Spacer(),
-                Container(
-                  height: getScreenHeight(65),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.orange,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
+                  SizedBox(height: getScreenHeight(20)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Spacer(),
-                      Spacer(),
-                      Text(
-                        '',
-                        style: TextStyle(
-                          fontSize: getScreenHeight(15),
-                          fontWeight: FontWeight.w500,
+                      GestureDetector(
+                        child: Text(
+                          'Forgot Password?',
+                          style: TextStyle(
+                            color: Colors.blue,
+                          ),
                         ),
-                      ),
-                      Spacer(),
+                      )
                     ],
                   ),
-                ),
-              ],
+                  SizedBox(height: getScreenHeight(20)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: getScreenHeight(65),
+                        width: MediaQuery.of(context).size.width * 0.35,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: kPrimaryColor,
+                            width: 1,
+                          ),
+                        ),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            enableFeedback: false,
+                            overlayColor:
+                                MaterialStateProperty.resolveWith(getColor),
+                          ),
+                          onPressed: () {},
+                          child: Icon(
+                            FontAwesomeIcons.google,
+                            color: kPrimaryColor,
+                            size: getScreenHeight(28),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: getScreenHeight(65),
+                        width: MediaQuery.of(context).size.width * 0.35,
+                        decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: TextButton(
+                          onLongPress: () {},
+                          onPressed: () {},
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: getScreenHeight(16),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
