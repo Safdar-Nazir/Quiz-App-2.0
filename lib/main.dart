@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'frontend/screens/quizScreen.dart';
+import 'frontend/screens/register/registerScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: QuizScreen(),
+      home: RegisterScreen(),
     );
   }
 }

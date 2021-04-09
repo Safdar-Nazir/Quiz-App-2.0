@@ -5,6 +5,8 @@ class AuthService {
 
   // Sign in with Email and Password
 
+  //  Register with Email and Password
+
   // Sign out
 
 }
