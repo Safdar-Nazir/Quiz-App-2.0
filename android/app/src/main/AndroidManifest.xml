@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.app_with_flutter2">
    <application
-        android:label="app_with_flutter2"
+        android:label="Quizaholic"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "469686372568",
+    "project_id": "quizaholic-app",
+    "storage_bucket": "quizaholic-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469686372568:android:528eea96910878e2feefad",
+        "android_client_info": {
+          "package_name": "com.brainedge.quizaholic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469686372568-1ovq7hmnghje759647m90lldoajb5017.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl2ywmQ3ZL8vhya_r8gcHSuvuAI1r05ok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "469686372568-1ovq7hmnghje759647m90lldoajb5017.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
