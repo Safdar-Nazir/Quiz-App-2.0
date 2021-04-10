@@ -1,9 +1,12 @@
 import 'package:app_with_flutter2/config/constants.dart';
 import 'package:app_with_flutter2/config/sizeConfig.dart';
+import 'package:app_with_flutter2/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatelessWidget {
+  final AuthService _authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig sizeConfig = SizeConfig();
@@ -147,11 +150,21 @@ class LoginScreen extends StatelessWidget {
                               overlayColor:
                                   MaterialStateProperty.resolveWith(getColor),
                             ),
-                            onPressed: () {},
-                            child: Icon(
-                              FontAwesomeIcons.google,
-                              color: kPrimaryColor,
-                              size: getScreenHeight(28),
+                            onPressed: () async {
+                              dynamic _result = await _authService.signInAnon();
+                              if (_result == null) {
+                                print('Error signing in');
+                              } else {
+                                print('Signed in');
+                                print(_result.uid);
+                              }
+                            },
+                            child: Text(
+                              'Guest',
+                              style: TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: getScreenHeight(16),
+                              ),
                             ),
                           ),
                         ),

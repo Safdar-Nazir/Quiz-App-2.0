@@ -20,7 +20,11 @@ dependencies:
 
   # Firebase dependencies
   firebase_auth: ^1.0.3
+  firebase_core: ^1.0.3
   cloud_firestore: ^1.0.4
+
+  # State Management
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
