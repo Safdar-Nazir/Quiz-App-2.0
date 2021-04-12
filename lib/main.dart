@@ -24,8 +24,9 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Wrapper(),
+        initialRoute: Wrapper.id,
         routes: {
+          Wrapper.id: (context) => Wrapper(),
           LoginScreen.id: (context) => LoginScreen(),
           RegisterScreen.id: (context) => RegisterScreen(),
         },

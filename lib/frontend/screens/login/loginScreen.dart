@@ -1,5 +1,6 @@
 import 'package:app_with_flutter2/config/constants.dart';
 import 'package:app_with_flutter2/config/sizeConfig.dart';
+import 'package:app_with_flutter2/frontend/screens/register/registerScreen.dart';
 import 'package:app_with_flutter2/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -221,7 +222,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 10,
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, RegisterScreen.id);
+                          },
                           child: Text(
                             'Create an Account',
                             style: TextStyle(

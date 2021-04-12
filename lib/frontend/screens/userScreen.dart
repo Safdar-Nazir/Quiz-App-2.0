@@ -49,7 +49,7 @@ class UserScreen extends StatelessWidget {
                       body: "Are you sure to log out?",
                       actions: [
                         AlertAction(
-                          text: "Logout",
+                          text: "Log out",
                           isDestructiveAction: true,
                           onPressed: () async {
                             await _auth.signOut();

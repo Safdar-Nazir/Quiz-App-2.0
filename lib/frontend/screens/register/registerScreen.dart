@@ -1,5 +1,6 @@
 import 'package:app_with_flutter2/config/constants.dart';
 import 'package:app_with_flutter2/config/sizeConfig.dart';
+import 'package:app_with_flutter2/frontend/screens/login/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -196,7 +197,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               overlayColor:
                                   MaterialStateProperty.resolveWith(getColor),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, LoginScreen.id);
+                            },
                             child: Text(
                               'Sign in',
                               style: TextStyle(
