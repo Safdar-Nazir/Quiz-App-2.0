@@ -26,6 +26,8 @@ dependencies:
   # State Management
   provider: ^5.0.0
 
+  flutter_alert: ^0.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

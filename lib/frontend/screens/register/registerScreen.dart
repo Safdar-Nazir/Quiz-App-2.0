@@ -3,7 +3,15 @@ import 'package:app_with_flutter2/config/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  static const id = 'registerScreen';
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  String email = '', password = '', name = '';
+
   @override
   Widget build(BuildContext context) {
     SizeConfig sizeConfig = SizeConfig();
@@ -61,6 +69,11 @@ class RegisterScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                name = value;
+                              });
+                            },
                             keyboardType: TextInputType.name,
                             decoration: InputDecoration(
                               isDense: true,
@@ -87,6 +100,11 @@ class RegisterScreen extends StatelessWidget {
                             height: getScreenHeight(20),
                           ),
                           TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                email = value;
+                              });
+                            },
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               isDense: true,
@@ -113,6 +131,11 @@ class RegisterScreen extends StatelessWidget {
                             height: getScreenHeight(20),
                           ),
                           TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                password = value;
+                              });
+                            },
                             keyboardType: TextInputType.visiblePassword,
                             obscureText: true,
                             decoration: InputDecoration(
@@ -191,8 +214,11 @@ class RegisterScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: TextButton(
-                            onLongPress: () {},
-                            onPressed: () {},
+                            onPressed: () {
+                              print(name);
+                              print(email);
+                              print(password);
+                            },
                             child: Text(
                               'Register',
                               style: TextStyle(

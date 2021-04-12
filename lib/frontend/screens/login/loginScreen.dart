@@ -4,8 +4,17 @@ import 'package:app_with_flutter2/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  static const String id = 'loginScreen';
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final AuthService _authService = AuthService();
+
+  String email = '', password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +73,11 @@ class LoginScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                email = value;
+                              });
+                            },
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               isDense: true,
@@ -90,6 +104,11 @@ class LoginScreen extends StatelessWidget {
                             height: getScreenHeight(20),
                           ),
                           TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                password = value;
+                              });
+                            },
                             keyboardType: TextInputType.visiblePassword,
                             obscureText: true,
                             decoration: InputDecoration(
@@ -176,8 +195,10 @@ class LoginScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: TextButton(
-                            onLongPress: () {},
-                            onPressed: () {},
+                            onPressed: () {
+                              print(email);
+                              print(password);
+                            },
                             child: Text(
                               'Login',
                               style: TextStyle(

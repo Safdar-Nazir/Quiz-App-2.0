@@ -1,5 +1,6 @@
 import 'package:app_with_flutter2/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_alert/flutter_alert.dart';
 
 class UserScreen extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -42,7 +43,21 @@ class UserScreen extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () async {
-                    await _auth.signOut();
+                    showAlert(
+                      context: context,
+                      title: "Log out?",
+                      body: "Are you sure to log out?",
+                      actions: [
+                        AlertAction(
+                          text: "Logout",
+                          isDestructiveAction: true,
+                          onPressed: () async {
+                            await _auth.signOut();
+                          },
+                        ),
+                      ],
+                      cancelable: true,
+                    );
                   },
                   child: Text(
                     'Logout',
