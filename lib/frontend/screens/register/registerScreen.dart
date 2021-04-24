@@ -1,6 +1,8 @@
 import 'package:app_with_flutter2/config/constants.dart';
 import 'package:app_with_flutter2/config/sizeConfig.dart';
+import 'package:app_with_flutter2/frontend/screens/homepage.dart';
 import 'package:app_with_flutter2/frontend/screens/login/loginScreen.dart';
+import 'package:app_with_flutter2/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,6 +13,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final AuthService _auth = AuthService();
   String email = '', password = '', name = '';
 
   @override
@@ -217,7 +220,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: TextButton(
-                            onPressed: () {
+                            onPressed: () async{
+                              try {
+                                final newUser =
+                                    await _auth.(
+                                        email: email, password: password);
+                                if (newUser != null) {
+                                  Navigator.pushNamed(
+                                      context, Homepage.id);
+                                }
+                              } catch (e) {
+                                print(e);
+                              }
                               print(name);
                               print(email);
                               print(password);

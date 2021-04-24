@@ -8,7 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'homeScreen.dart';
 
 class Homepage extends StatefulWidget {
-  static const String id = 'homescreen';
+  static const String id = 'homePage';
 
   @override
   _HomepageState createState() => _HomepageState();

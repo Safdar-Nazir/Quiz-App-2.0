@@ -1,4 +1,5 @@
 // import 'package:app_with_flutter2/frontend/screens/homepage.dart';
+import 'package:app_with_flutter2/frontend/screens/homepage.dart';
 import 'package:app_with_flutter2/frontend/screens/login/loginScreen.dart';
 import 'package:app_with_flutter2/frontend/screens/wrapper.dart';
 import 'package:app_with_flutter2/services/auth.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
           Wrapper.id: (context) => Wrapper(),
           LoginScreen.id: (context) => LoginScreen(),
           RegisterScreen.id: (context) => RegisterScreen(),
+          Homepage.id: (context) => Homepage(),
         },
       ),
     );
