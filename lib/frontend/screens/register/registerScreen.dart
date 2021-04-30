@@ -14,7 +14,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final AuthService _auth = AuthService();
-  String email = '', password = '', name = '';
+  String email = '', password = '', name = '', error = '';
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     Form(
+                      key: _formKey,
                       child: Column(
                         children: [
                           TextFormField(
@@ -104,6 +106,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             height: getScreenHeight(20),
                           ),
                           TextFormField(
+                            validator: (value) =>
+                                value.isEmpty ? 'Enter an Email' : null,
                             onChanged: (value) {
                               setState(() {
                                 email = value;
@@ -135,6 +139,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             height: getScreenHeight(20),
                           ),
                           TextFormField(
+                            validator: (value) => value.length < 6
+                                ? 'Enter a password longer than 6 chracters'
+                                : null,
                             onChanged: (value) {
                               setState(() {
                                 password = value;
@@ -220,21 +227,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: TextButton(
-                            onPressed: () async{
-                              try {
-                                final newUser =
-                                    await _auth.(
-                                        email: email, password: password);
-                                if (newUser != null) {
-                                  Navigator.pushNamed(
-                                      context, Homepage.id);
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                dynamic result =
+                                    await _auth.registerwithEmailandPassword(
+                                        email, password);
+                                if (result == null) {
+                                  setState(() {
+                                    error =
+                                        'Please enter a valid email address.';
+                                    print(error);
+                                  });
                                 }
-                              } catch (e) {
-                                print(e);
                               }
-                              print(name);
-                              print(email);
-                              print(password);
                             },
                             child: Text(
                               'Register',

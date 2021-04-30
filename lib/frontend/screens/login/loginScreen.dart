@@ -13,9 +13,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final AuthService _authService = AuthService();
+  final AuthService _auth = AuthService();
 
-  String email = '', password = '';
+  String email = '', password = '', error = '';
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     Form(
+                      key: _formKey,
                       child: Column(
                         children: [
                           TextFormField(
@@ -171,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   MaterialStateProperty.resolveWith(getColor),
                             ),
                             onPressed: () async {
-                              dynamic _result = await _authService.signInAnon();
+                              dynamic _result = await _auth.signInAnon();
                               if (_result == null) {
                                 print('Error signing in');
                               } else {
@@ -196,9 +198,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: TextButton(
-                            onPressed: () {
-                              print(email);
-                              print(password);
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                dynamic result =
+                                    await _auth.signInWithEmailandPassword(
+                                        email, password);
+                                if (result == null) {
+                                  setState(() {
+                                    error =
+                                        'Could not sign in with these credentials.';
+                                    print(error);
+                                  });
+                                }
+                              }
                             },
                             child: Text(
                               'Login',
